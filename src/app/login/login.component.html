@@ -1,0 +1,55 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="border col-md-12 col-sm-12">
+        <h3 class="text-center mt-2">Login</h3>
+
+        <div class="form-group row mt-4 mr-2 ml-2">
+            <label class="col-md-6 col-sm-6 text-center" for="userName">Username: <span
+                    class="required-field">*</span></label>
+            <div class="col-md-6 col-sm-6 p-0">
+                <input class="form-control" type="text" formControlName="userName"
+                    [ngClass]="{ 'is-invalid': submitted && f['userName'].errors }" minlength="6" maxlength="25"
+                    (keypress)="alphaNumericOnly($event)" />
+                <div *ngIf="submitted && f['userName'].errors" class="invalid-feedback">
+                    <div *ngIf="f['userName'].errors['required']">Username required.</div>
+                    <div *ngIf="f['userName'].errors['minlength']">Username must be at least 6 alphanumerics.</div>
+                    <div *ngIf="f['userName'].errors['maxlength']">Username is greater than 25 alphanumerics.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row mt-2 mr-2 ml-2">
+            <label class="col-md-6 col-sm-6 text-center" for="password"> Password: <span
+                    class="required-field">*</span></label>
+            <div class="col-md-6 col-sm-6 p-0">
+                <input class="form-control" type="password" formControlName="password"
+                    [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" minlength="8" maxlength="25"
+                    (keypress)="isValidPassword($event)" />
+                <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                    <div *ngIf="f['password'].errors['required']">Password is required.</div>
+                    <div *ngIf="f['password'].errors['maxlength']">Password is greater than 25 alphanumerics.</div>
+                    <div *ngIf="f['password'].errors['pattern']">Password must contains at least 1 lowercase, 1 uppercase, 1 numeric and 1 special character.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group row mt-2 mr-2 ml-2">
+            <label class="col-md-6 col-sm-6 text-center" for="role"> Role: <span
+                    class="required-field">*</span></label>
+            <div class="col-md-6 col-sm-6 p-0">
+                <input class="form-control" type="text" formControlName="role"
+                    [ngClass]="{ 'is-invalid': submitted && f['role'].errors }" minlength="4" maxlength="25" />
+                <div *ngIf="submitted && f['role'].errors" class="invalid-feedback">
+                    <div *ngIf="f['role'].errors['required']">Role is required.</div>
+                    <div *ngIf="f['role'].errors['minlength']">Role must be at least 4 alphanumerics.</div>
+                    <div *ngIf="f['role'].errors['maxlength']">Role is greater than 25 alphanumerics.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-4 mb-4 ml-2 mr-2">
+            <div class="col-md-4 col-sm-4"></div>
+            <button class="btn btn-success col-md-4 col-sm-4" type="submit"
+                [disabled]="loading">Login</button>
+        </div>
+    </div>
+</form>

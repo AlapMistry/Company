@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap-scss/bootstrap.scss";
+
+a {
+    color: #007bff !important;
+}
+
+a:hover {
+    cursor: pointer;
+    text-decoration: underline !important;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.required-field {
+    color: red;
+}
+
+.title {
+    height: 50px;
+}
